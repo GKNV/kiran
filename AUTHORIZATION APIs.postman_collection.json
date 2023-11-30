@@ -1,0 +1,697 @@
+{
+	"info": {
+		"_postman_id": "32b51ef7-757a-4221-bfa6-da88c58c7a78",
+		"name": "AUTHORIZATION APIs",
+		"description": "This collection consists of REST APIs that are secured using different authorization algorithms such as\n\n1. BASIC AUTH\n    \n2. BEARER ACCESS TOKEN AUTH\n    \n3. DIGEST AUTH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5040522",
+		"_collection_link": "https://www.postman.com/kiranmm/workspace/comcast-project/collection/5040522-32b51ef7-757a-4221-bfa6-da88c58c7a78?action=share&source=collection_link&creator=5040522"
+	},
+	"item": [
+		{
+			"name": "SMOKE TC",
+			"item": [
+				{
+					"name": "BASIC AUTH API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify if status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if response time < 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if response body is received from server\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if authenticated=true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.authenticated).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "passwd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://httpbin.org/basic-auth/user/passwd",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"basic-auth",
+								"user",
+								"passwd"
+							]
+						},
+						"description": "This is a REST API that uses BASIC AUTHORIZATION algorithm and expects the user to input a valid UN and valid PWD to get server response as 200 OK and a valid response body."
+					},
+					"response": []
+				},
+				{
+					"name": "BEARER ACCESS TOKEN API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify if status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if response time < 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if response body is received from server\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if authenticated=true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.authenticated).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 12345",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{BEARER_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://httpbin.org/bearer",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"bearer"
+							]
+						},
+						"description": "This is a REST API that uses BEARER ACCESS TOKEN AUTHORIZATION algorithm and expects the user to input a valid bearer access token o get server response as 200 OK and a valid response body."
+					},
+					"response": []
+				},
+				{
+					"name": "DIGEST AUTHORIZATION API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify if status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if response time < 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if response body is received from server\", function () {\r",
+									"    pm.response.to.have.body();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if authenticated=true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.authenticated).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify if Content-Type=application/json\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "qop",
+									"value": "auth-int",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "passwd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "MD5",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://httpbin.org/digest-auth/auth-int/user/passwd",
+							"protocol": "https",
+							"host": [
+								"httpbin",
+								"org"
+							],
+							"path": [
+								"digest-auth",
+								"auth-int",
+								"user",
+								"passwd"
+							]
+						},
+						"description": "This is a REST API that uses DIGEST AUTHORIZATION algorithm and expects the user to input a valid UN, valid PWD and QOP to get server response as 200 OK and a valid response body."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains positive test-cases where the REST APIs are validated with valid credentials to prove that the APIs shall work functionally correct."
+		},
+		{
+			"name": "REGRESSION TC",
+			"item": [
+				{
+					"name": "NO AUTH SELECTED",
+					"item": [
+						{
+							"name": "BASIC AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/basic-auth/user/passwd",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"basic-auth",
+										"user",
+										"passwd"
+									]
+								},
+								"description": "This is a REST API that uses BASIC AUTHORIZATION algorithm however the user has choosen NO AUTH."
+							},
+							"response": []
+						},
+						{
+							"name": "BEARER ACCESS TOKEN AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/bearer",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"bearer"
+									]
+								},
+								"description": "This is a REST API that uses BEARER ACCESS TOKEN AUTHORIZATION algorithm however the user has choosen NO AUTH."
+							},
+							"response": []
+						},
+						{
+							"name": "DIGEST AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/digest-auth/auth-int/user/passwd",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"digest-auth",
+										"auth-int",
+										"user",
+										"passwd"
+									]
+								},
+								"description": "This is a REST API that uses DIGEST AUTHORIZATION algorithm however the user has choosen NO AUTH."
+							},
+							"response": []
+						}
+					],
+					"description": "This folder contains NO AUTH as the algorithm selected value for all its APIs"
+				},
+				{
+					"name": "INVALID CREDENTIALS",
+					"item": [
+						{
+							"name": "BASIC AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "tiger",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "kiran",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/basic-auth/user/passwd",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"basic-auth",
+										"user",
+										"passwd"
+									]
+								},
+								"description": "This is a REST API that uses BASIC AUTHORIZATION algorithm however the user has entered invalid credentials."
+							},
+							"response": []
+						},
+						{
+							"name": "BEARER ACCESS TOKEN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "Hyderabad 999",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/bearer",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"bearer"
+									]
+								},
+								"description": "This is a REST API that uses BEARER ACCESS TOKEN AUTHORIZATION algorithm however the user has entered invalid credentials."
+							},
+							"response": []
+						},
+						{
+							"name": "DIGEST AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "digest",
+									"digest": [
+										{
+											"key": "password",
+											"value": "elections",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "India",
+											"type": "string"
+										},
+										{
+											"key": "qop",
+											"value": "auth-int",
+											"type": "string"
+										},
+										{
+											"key": "algorithm",
+											"value": "MD5",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/digest-auth/auth-int/user/passwd",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"digest-auth",
+										"auth-int",
+										"user",
+										"passwd"
+									]
+								},
+								"description": "This is a REST API that uses DIGEST AUTHORIZATION algorithm however the user has entered invalid credentials."
+							},
+							"response": []
+						}
+					],
+					"description": "This folder contains VALID AUTH selected as the algorithm however the user credentials and access tokens entered are invalid"
+				},
+				{
+					"name": "EMPTY CREDENTIALS",
+					"item": [
+						{
+							"name": "BASIC AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/basic-auth/user/passwd",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"basic-auth",
+										"user",
+										"passwd"
+									]
+								},
+								"description": "This is a REST API that uses BASIC AUTHORIZATION algorithm however the user has entered empty credentials."
+							},
+							"response": []
+						},
+						{
+							"name": "BEARER ACCESS TOKEN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{BEARER_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/bearer",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"bearer"
+									]
+								},
+								"description": "This is a REST API that uses BEARER ACCESS TOKEN AUTHORIZATION algorithm however the user has entered empty credentials."
+							},
+							"response": []
+						},
+						{
+							"name": "DIGEST AUTH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Verify if status code is 401 UNAUTHORIZED\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"    pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "digest",
+									"digest": [
+										{
+											"key": "password",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "qop",
+											"value": "auth-int",
+											"type": "string"
+										},
+										{
+											"key": "algorithm",
+											"value": "MD5",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://httpbin.org/digest-auth/auth-int/user/passwd",
+									"protocol": "https",
+									"host": [
+										"httpbin",
+										"org"
+									],
+									"path": [
+										"digest-auth",
+										"auth-int",
+										"user",
+										"passwd"
+									]
+								},
+								"description": "This is a REST API that uses DIGEST AUTHORIZATION algorithm however the user has entered empty credentials."
+							},
+							"response": []
+						}
+					],
+					"description": "This folder contains VALID AUTH selected as the algorithm however the user credentials are empty."
+				}
+			],
+			"description": "This folder contains negative test-cases where the REST APIs are validated with invalid credentials to prove that the APIs may not work functionally correct."
+		}
+	]
+}
